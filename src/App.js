@@ -1,0 +1,56 @@
+import './App.css';
+import useStringHook from './Hooks/useStringHook'
+import Example from './components/Example'
+import useInput from './Hooks/useInput';
+
+function App() {
+
+  const { 
+    stringHookState, 
+    HelloWorld,
+    reverseString, 
+    dblStr,
+    setStringHookState 
+  } = useStringHook()
+
+//  const inputField = useInput()
+  const firstname = useInput('fname','First Name')
+  const lastname = useInput('lname','Last Name')
+  const email = useInput('email','Email')
+
+  return (
+    <div className="App App-header">
+      <h1>Custom Hooks</h1>
+{/* 
+      <h4>------StringHook------------</h4>
+      <p>{stringHookState}</p>
+      <p>{HelloWorld}</p>
+      <input onChange={
+        (event) => setStringHookState(event.target.value)
+      } />
+      <button onClick={reverseString}>Reverse IT!</button>
+      <button onClick={dblStr}>Double IT!</button> */}
+      <Example />
+      <h4>----------useInput------------</h4>
+      {/* <input {...inputField} /> */}
+      <h3>First Name: {firstname.value}</h3> 
+      <input  {...firstname} />
+
+      {/* same as above */}
+      <h3>Last Name: {lastname.value}</h3>  
+      <input 
+        id={lastname.id} 
+        name= {lastname.name}
+        onChange={lastname.onChange}
+        value={lastname.value}
+        placeholder={lastname.placeholder}
+      />
+      
+      <h3>Email: {email.value}</h3>
+      <input {...email} />
+      
+    </div>
+  );
+}
+
+export default App;
